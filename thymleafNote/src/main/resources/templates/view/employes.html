@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body style="height:100vh; display: flex;">
+	<header th:replace="fragments/header :: sidebar"></header>
+    <div class="container">
+        <h5>Liste des employés</h5>
+        <a th:href="@{/employes/view/addEmploye}" class="btn btn-primary mb-3" style="font-size: 0.7em;">Ajouter un employé</a>
+
+        
+        <table class="table" style="font-size: 0.8em;">
+            <thead>
+                <tr>
+                    <th style="padding:0.35em !important;" scope="col">Nom</th>
+                    <th style="padding:0.35em !important;" scope="col">Occupation</th>
+                    <th style="padding:0.35em !important;" scope="col">Mail</th>
+                    <th style="padding:0.35em !important;" scope="col">Téléphone</th>
+                    <th style="padding:0.35em !important;" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Boucle sur la liste des employés pour afficher chaque employé -->
+                <tr th:each="employe : ${employes}">
+                    <td style="padding:0.35em !important;" th:text="${employe.nom}">Nom</td>
+                    <td style="padding:0.35em !important;" th:text="${employe.occupation}">Occupation</td>
+                    <td style="padding:0.35em !important;" th:text="${employe.email}">Mail</td>
+                    <td style="padding:0.35em !important;" th:text="${employe.telephone}">Téléphone</td>
+                    <td style="padding:0.35em !important;">
+						<a class="btn btn-success" th:href="@{/employes/view/detailEmploye/{id}(id=${employe.id})}" style="font-size: 0.7em;">Voir</a>
+                        <a class="btn btn-primary" th:href="@{/employes/view/editEmploye/{id}(id=${employe.id})}" style="font-size: 0.7em;">Mettre à jour</a>
+                        <a class="btn btn-danger" th:href="@{/employes/deleteEmploye/{id}(id=${employe.id})}" style="font-size: 0.7em;" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');">Supprimer</a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<meta charset="ISO-8859-1">
+<title>Détails du candidat</title>
+</head>
+<body style="height:100vh; display: flex;">
+	<header th:replace="fragments/header :: sidebar"></header>
+		<div class="container">
+        <h5>Détails du candidat</h5>
+        
+        <a class="btn btn-primary" th:href="@{/employes/view/editCandidat/{id}(id=${candidat.id})}"  style="font-size: 0.7em;">Mettre à jour</a>
+        <a class="btn btn-danger" th:href="@{/employes/deleteCandidat/{id}(id=${candidat.id})}"  style="font-size: 0.7em;" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce candidat ?');">Supprimer</a>
+
+        <table class="table"  style="font-size: 0.8em;">
+            <tr>
+                <th style="padding:0.35em !important;"><b>Nom :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.nom}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Numéro Identite :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.numeroidentite}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Adresse :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.adresse}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Date de naissance :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.datenaissance}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Adresse e-mail :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.email}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Numéro de téléphone :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.telephone}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Note (1-10) :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.note}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Domaine Technique</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.domainetechnique}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Date d'entretien :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.dateentretien}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Description :</b></th>
+                <td style="padding:0.35em !important;" th:text="${candidat.description}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

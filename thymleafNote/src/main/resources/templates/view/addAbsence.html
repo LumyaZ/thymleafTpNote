@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Ajouter des absences</title>
+</head>
+<body style="height:100vh; display: flex;">
+	<header th:replace="fragments/header :: sidebar"></header>
+	<div class="container">
+	    <h5>Attribuer des absences à l'employé</h5>
+	     <form th:action="@{/employes/view/saveAbsence}" th:object="${absence}" method="post">
+            <input type="hidden" th:field="*{employe.id}" th:value="${employe.id}" />
+            <div class="form-group">
+                <label for="date">Date de l'absence :</label>
+                <input type="date" class="form-control" id="date" th:field="*{date}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+	</div>
+</body>
+</html>

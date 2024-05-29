@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<meta charset="ISO-8859-1">
+<title>Détails de l'employé</title>
+</head>
+<body style="height:100vh; display: flex;">
+	<header th:replace="fragments/header :: sidebar"></header>
+    <div class="container">
+        <h5>Détails de l'employé</h5>
+        <a class="btn btn-primary" th:href="@{/employes/view/editEmploye/{id}(id=${employe.id})}" style="font-size: 0.7em;">Mettre à jour</a>
+        <a th:href="@{/employes/view/addConge/{id}(id=${employe.id})}" class="btn btn-success" style="font-size: 0.7em;">Attribuer des congés</a>
+        <a th:href="@{/employes/view/addAbsence/{id}(id=${employe.id})}" class="btn btn-warning" style="font-size: 0.7em;">Signaler une absence</a>
+        <a class="btn btn-danger" th:href="@{/employes/deleteEmploye/{id}(id=${employe.id})}" style="font-size: 0.7em;" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');">Supprimer</a>
+        <table class="table" style="font-size: 0.8em;">
+            <tr>
+                <th style="padding:0.35em !important;"><b>Nom :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.nom}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Numéro Identifiant :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.numeroidentifiant}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Adresse :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.adresse}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Date de naissance :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.datenaissance}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Adresse e-mail :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.email}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Numéro de téléphone :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.telephone}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Occupation :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.occupation}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Salaire :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.salaire}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Date de début :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.datedebut}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Date de fin :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.datefin}"></td>
+            </tr>
+            <tr>
+                <th style="padding:0.35em !important;"><b>Description :</b></th>
+                <td style="padding:0.35em !important;" th:text="${employe.description}"></td>
+            </tr>
+        </table>
+        <button class="btn btn-light btn-block d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#congesTable" aria-expanded="false" aria-controls="congesTable">
+            <span>Voir les congés</span>
+            <span>
+                <span th:text="(${countConge})"></span>
+                <i class="rotate fas fa-chevron-down"></i>
+            </span>
+        </button>
+    
+	    <div class="collapse" id="congesTable">
+	            <table style="font-size: 0.8em;" class="table table-striped">
+	                <thead>
+	                    <tr>
+	                        <th style="padding:0.35em !important;">Date de début</th>
+	                        <th style="padding:0.35em !important;">Date de fin</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr style="padding:0.35em !important;" th:each="conge : ${findAllCongesByEmployeId}">
+	                        <td style="padding:0.35em !important;" th:text="${conge.datedebut}"></td>
+	                        <td style="padding:0.35em !important;" th:text="${conge.datefin}"></td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	    </div>
+	    
+	    <button class="btn btn-light btn-block d-flex justify-content-between align-items-center mt-3" type="button" data-toggle="collapse" data-target="#absencesTable" aria-expanded="false" aria-controls="absencesTable">
+            <span>Voir les absences</span>
+            <span>
+                <span th:text="(${countAbsence})"></span>
+                <i class="rotate fas fa-chevron-down"></i>
+            </span>
+        </button>
+	    
+	    <div class="collapse" id="absencesTable">
+	            <table style="font-size: 0.8em;" class="table table-striped">
+	                <thead>
+	                    <tr>
+	                        <th style="padding:0.35em !important;">Date d'absence</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr style="padding:0.35em !important;" th:each="absence : ${findAllAbsenceByEmployeId}">
+	                        <td style="padding:0.35em !important;" th:text="${absence.date}"></td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	    </div>
+    </div>
+<style>
+    .rotate {
+        transition: transform 0.3s ease-in-out;
+    }
+    .rotate.down {
+        transform: rotate(180deg);
+    }
+    .table.th, .table.td{
+		padding: .3em;
+	}
+</style>
+ <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            $('#congesTable').on('show.bs.collapse', function () {
+                $('#congesButton .rotate').addClass('down');
+            }).on('hide.bs.collapse', function () {
+                $('#congesButton .rotate').removeClass('down');
+            });
+
+            $('#absencesTable').on('show.bs.collapse', function () {
+                $('#absencesButton .rotate').addClass('down');
+            }).on('hide.bs.collapse', function () {
+                $('#absencesButton .rotate').removeClass('down');
+            });
+        });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

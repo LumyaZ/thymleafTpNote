@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<meta charset="ISO-8859-1">
+<title>Edit Candidat</title>
+</head>
+<body style="height:100vh; display: flex;">
+	<header th:replace="fragments/header :: sidebar"></header>
+<div class="container">
+    <h5>Modifier un Candidat</h5>
+    <form th:action="@{/employes/updateCandidat}" th:object="${candidat}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nom">Nom :</label>
+                <input type="text" class="form-control" id="nom" th:field="*{nom}" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="numeroidentite">Numéro Identite :</label>
+                <input type="text" class="form-control" id="numeroidentite" th:field="*{numeroidentite}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="adresse">Adresse :</label>
+                <input type="text" class="form-control" id="adresse" th:field="*{adresse}" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="datenaissance">Date de naissance :</label>
+                <input type="date" class="form-control" id="datenaissance" th:field="*{datenaissance}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="telephone">Numéro de téléphone :</label>
+                <input type="tel" class="form-control" id="telephone" th:field="*{telephone}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="note">Note (1-10) :</label>
+                <input type="number" min="1" max="10" class="form-control" id="note" th:field="*{note}" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="domainetechnique">Domaine Technique :</label>
+                <input type="text" class="form-control" id="domainetechnique" th:field="*{domainetechnique}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dateentretien">Date d'entretien :</label>
+            <input type="date" class="form-control" id="dateentretien" th:field="*{dateentretien}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description :</label>
+            <textarea class="form-control" id="description" th:field="*{description}" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </form>
+</div>
+</body>
+</html>

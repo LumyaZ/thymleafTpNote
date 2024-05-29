@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <span class="fs-4">Système de gestion RH</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a th:href="@{/employes/view/home}" class="nav-link text-white" aria-current="page">
+                Accueil
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/employes/view/employes}" class="nav-link text-white">
+                Employés
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/employes/view/candidat}" class="nav-link text-white">
+                Candidats
+            </a>
+        </li>
+    </ul>
+</div>

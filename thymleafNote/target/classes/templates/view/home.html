@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body style="height:100vh; display: flex;">
+	<div th:replace="fragments/header :: sidebar"></div>
+    <div class="container">
+        <h5>Bienvenue à la page d'accueil</h5>
+        <div style="display: flex;">
+	        <div class="card">
+	            <div class="card-body">
+	                <h5 class="card-title">Nombre d'employés</h5>
+	                <span class="card-text" th:text="${nombreEmployes}"></span> <span> Employes</span>
+	            </div>
+	        </div>
+	        <!-- Carré pour le nombre de candidats -->
+	        <div class="card">
+	            <div class="card-body">
+	                <h5 class="card-title">Nombre de candidats</h5>
+	                <span class="card-text" th:text="${nombreCandidats}"></span> <span> Candidats</span>
+	            </div>
+        	</div>
+        </div>
+    </div>
+</body>
+</html>
